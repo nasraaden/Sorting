@@ -1,6 +1,6 @@
 # TO-DO: Complete the selection_sort() function below
 def selection_sort(arr):
-    # loop through n-1 elements, the last index should be sorted afterwards
+    # loop through n-1 elements
     for i in range(0, len(arr) - 1):
         cur_index = i
         smallest_index = cur_index
@@ -15,7 +15,7 @@ def selection_sort(arr):
         # if current index is smaller than smallest index
         if cur_index < smallest_index:
             # switch them
-            arr[cur_index] = arr[smallest_index] = arr[smallest_index], arr[cur_index]
+            arr[cur_index], arr[smallest_index] = arr[smallest_index], arr[cur_index]
     return arr
 
 
@@ -29,7 +29,7 @@ print(my_list)
 def bubble_sort(arr):
     # for the first number
     for i in range(0, len(arr) - 1):
-        # for the second number, to the right of the first number
+        # for the second number, which is to the right of the first number
         for j in range(i + 1, len(arr)):
             # if the first number is bigger than the second number
             if arr[i] > arr[j]:
