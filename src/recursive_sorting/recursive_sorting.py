@@ -5,34 +5,49 @@ def merge(arrA, arrB):
     # TO-DO
     index_a = 0  # starting with the smallest index for a
     index_b = 0  # starting with the smallest index for b
-    index_m = 0
+    # index_m = 0  # index to hold merged array
     # using a while loop, look at all the indices in both arrA and arrB
-    while index_a < len(arrA) and index_b < len(arrB):
-        # look at each index of arrA and arrB, add smaller index to merged_arr
-        if arrA[index_a] < arrB[index_b]:
-            merged_arr[index_m] = (arrA[index_a])
-            # increment arrA index so that it doesn't stop after first index
-            index_m += 1
+    # while index_a < len(arrA) and index_b < len(arrB):
+    #     # look at each index of arrA and arrB, add smaller index to merged_arr
+    #     if arrA[index_a] < arrB[index_b]:
+    #         merged_arr[index_m] = (arrA[index_a])
+    #         # increment arrA index and merged index so that it doesn't stop after first index
+    #         # index_m += 1
+    #         index_a += 1
+    #     else:
+    #         merged_arr[index_m] = (arrB[index_b])
+    #         # index_m += 1
+    #         index_b += 1
+    # once arrA is finished, do the same for arrB
+    # while index_a == len(arrA) and index_b < len(arrB):
+    #     merged_arr[index_m] = (arrB[index_b])
+    #     # index_m += 1
+    #     index_b += 1
+
+    # loop through elements in arrA and arrB and look at first index at arrA and arrB
+    # add the smaller number at first of both arrays to merged arr
+    # increment indices until both arrays have been added to merged_arr
+    # return merged_arr
+    for i in range(0, elements):
+        if index_a >= len(arrA):
+            merged_arr[i] = arrB[index_b]
+            index_b += 1
+        elif index_b >= len(arrB):
+            merged_arr[i] = arrA[index_a]
+            index_a += 1
+        elif arrA[index_a] < arrB[index_b]:
+            merged_arr[i] = arrA[index_a]
             index_a += 1
         else:
-            merged_arr[index_m] = (arrB[index_b])
-            index_m += 1
+            merged_arr[i] = arrB[index_b]
             index_b += 1
-    while index_a == len(arrA) and index_b < len(arrB):
-        merged_arr[index_m] = (arrB[index_b])
-        index_m += 1
-        index_b += 1
-
-        # check for the smallest value at index 0 of both array
-        # replace that value at index 0 of merged_arr
-        # increment until you get to the last index of both arrays
     return merged_arr
 
 
-arrA = [1, 2, 3]
-arrB = [4, 5, 6]
+# arrA = [1, 2, 3, 10, 11, 12, 14]
+# arrB = [4, 5, 6, 19, 25, 80]
 
-print(merge(arrA, arrB))
+# print(merge(arrA, arrB))
 
 # TO-DO: implement the Merge Sort function below USING RECURSION
 
@@ -42,13 +57,15 @@ def merge_sort(arr):
     # check for base cases
     if len(arr) <= 1:
         return arr
-    # left array is going to be from the start of the array to half of the length of the array
-    arrA = (arr[len(arr) // 2:])
-    # right array is going to be from where arrA ended to the end of the array
-    arrB = (arr[:len(arr) // 2])
-    # merge the two arrays
-    # merge(arrA, arrB)
-    return merge(merge_sort(arrA), merge_sort(arrB))
+    else:
+        # left array is going to be from the start of the array to half of the length of the array
+        left = merge_sort(arr[0:len(arr) // 2])
+        # right array is going to be from where arrA ended to the end of the array
+        right = merge_sort(arr[len(arr) // 2:])
+        # in return, merge the two arrays
+        # and call function on arrA and arrB since arr will keep dividing
+        arr = merge(left, right)
+    return arr
 
 
 arr = [8, 2, 5, 7, 4, 9, 1, 6, 3]
